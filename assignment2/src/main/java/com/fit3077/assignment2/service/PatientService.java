@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Business logic
@@ -20,20 +22,32 @@ public class PatientService {
     private final PatientDao patientDao;
 
     /**
+     * @param patientDao
      * @Autowired: dependency injection
      * @Qualifire: the name needs to match that of @Component or @Repository that you want to inject
-     * @param patientDao
      */
     @Autowired
-    public PatientService(@Qualifier("fakeDao") PatientDao patientDao){
+    public PatientService(@Qualifier("fakeDao") PatientDao patientDao) {
         this.patientDao = patientDao;
     }
 
-    public boolean addPatient(Patient patient){
+    public boolean addPatient(Patient patient) {
         return patientDao.insertPatient(patient);
     }
 
-    public List<Patient> getAllPatients(){
+    public List<Patient> getAllPatients() {
         return patientDao.selectAllPatient();
+    }
+
+    public Optional<Patient> getPatientById(UUID id) {
+        return patientDao.selectPatientById(id);
+    }
+
+    public boolean deletePatientById(UUID id) {
+        return patientDao.deletePatientById(id);
+    }
+
+    public boolean updatePatientById(UUID id, Patient patient) {
+        return patientDao.updatePatientById(id, patient);
     }
 }

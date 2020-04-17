@@ -2,6 +2,7 @@ package com.fit3077.assignment2.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 /**
@@ -9,6 +10,7 @@ import java.util.UUID;
  */
 public class Patient {
     private final UUID id;
+    @NotBlank
     private final String name;
 
     /**

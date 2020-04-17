@@ -3,6 +3,7 @@ package com.fit3077.assignment2.dao;
 import com.fit3077.assignment2.model.Patient;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -17,4 +18,10 @@ public interface PatientDao {
     }
 
     List<Patient> selectAllPatient();
+
+    Optional<Patient> selectPatientById(UUID id);
+
+    boolean deletePatientById(UUID id);
+
+    boolean updatePatientById(UUID id, Patient patient);
 }
